@@ -13,7 +13,7 @@ const Product = () => {
       return product._id === pathname[pathname.length-1]
      })
      setProduct(filterProduct[0])
-    //  console.log(product.image[0] )
+    //  console.log(product )
   }, [product])
  
   return (

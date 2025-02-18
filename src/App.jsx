@@ -10,7 +10,7 @@ import Product from '../src/pages/Product'
 import Order from '../src/pages/Orders'
 import About from '../src/pages/About'
 import Navbar from './componets/Navbar'
-
+import Footer from './componets/Footer'
 
 const App = () => {
   return (
@@ -27,7 +27,8 @@ const App = () => {
       <Route path='/product/:id' element={<Product/>} /> 
       <Route path='/order' element={<Order/>} /> 
       </Routes>
-    </div>
+      <Footer/>
+          </div>
   )
 }
 
