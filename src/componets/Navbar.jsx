@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="flex h-[70px] justify-between mb-10 ">
       <Link to={"/"}>
         <h1 className="text-4xl font-extrabold font-poppins text-gray-600 ">
-          SEDEVER<span className="text-orange-400 text-6xl aspect-square">.</span>
+          SEDEVER<span className="text-amber-100 text-6xl aspect-square">.</span>
         </h1>
       </Link>
       <div className="flex justify-between items-center  ">

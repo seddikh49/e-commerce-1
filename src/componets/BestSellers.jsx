@@ -25,9 +25,11 @@ const BestSellers = () => {
            </p>
         </div>
         <div>
-        <div className='mt-10'>   
-          <ProductItems latestProducts={bestSellers} />
-      </div>
+        <div className='mt-10 grid lg:grid-cols-3 md:grid-cols-2  sm:grid-cols-2 xl:grid-cols-5 xm:grid-cols-1 gap-y-6 gap-4'>
+            {bestSellers.map((item)=>{
+               return <ProductItems key={item._id} id={item._id}  name={item.name} image={item.image[0]} price={item.price} />
+            })}
+          </div>
         
     </div>
     </div>

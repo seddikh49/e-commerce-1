@@ -3,7 +3,7 @@ import { assets } from '../‏‏assets/frontend_assets/assets'
 
 const Hero = () => {
   return (
-    <div className='flex xl:flex-row lg:flex-col sm:flex-col w-full justify-center items-center  border border-gray-400 '>
+    <div className='flex xl:flex-row lg:flex-col xm:flex-col sm:flex-col w-full justify-center items-center  border border-gray-400 '>
         <div className='w-1/2 gap-10 sm:w-full py-10 flex flex-col  items-center'>
           <div className=' flex flex-col xl:flex-col lg:flex-col  sm:flex-col gap-5 '>
             <div className='flex  gap-2 items-center'>
@@ -17,7 +17,7 @@ const Hero = () => {
              </div>
         </div>
         </div>
-        <div className='w-1/2 lg:w-full sm:w-full  '>
+        <div className='w-1/2 lg:w-full sm:w-full xm:w-full  '>
              <img src={assets.hero_img} className='xl:w-full lg:w-full h-full object-cover' alt="" />
         </div>    
     </div>

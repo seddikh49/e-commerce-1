@@ -1,4 +1,4 @@
-import React, { useContext,useState,useEffect } from 'react'
+import React, { useContext,useState,useEffect, useRef } from 'react'
 import { ShopContext } from '../context/shopContext'
 import ProductItems from '../componets/ProductItems';
 import Title from '../componets/Title';
@@ -11,24 +11,31 @@ const Collection = () => {
   const [allProducts, setallProducts] = useState([])
   const [showCategories, setshowCategories] = useState("hidden")
   const [icon, setIcon] = useState(true)
+  const ref = useRef()
 
   useEffect(() => {
     setallProducts(products)
+    console.log(allProducts)
   }, [])
 
   
   const filterCategory = (e) =>{
-    const filterProduct = products.filter((item)=>{
-      return item.category === e.target.value
-    })
-    setallProducts(filterProduct)
+    if(e.target.checked === true){
+      const filterCategory = products.filter((item)=>{
+        return item.category === e.target.value
+      })
+      setallProducts(filterCategory)
+    }
+    else{
+      setallProducts(products)
+    }
   } 
 
   const filterSubCategory = (e) =>{
-    const filterProduct = products.filter((item)=>{
+    const filterSubCategory = products.filter((item)=>{
       return item.subCategory === e.target.value
     })
-    setallProducts(filterProduct)
+    setallProducts(filterSubCategory)
   } 
 
   const showCategoriesHandle = () =>{
@@ -42,8 +49,8 @@ const Collection = () => {
   }
   
   return (
-    <div className=' w-full flex xl:flex-row  md:flex-col xm:flex-col sm:flex-col lg:flex-row  justify-between p-8'>
-      <div className='sm:w-full md:w-full xl:w-96 lg:w-60 flex flex-col gap-y-5 p-10  '>
+    <div className=' w-full flex xl:flex-row  md:flex-col xm:flex-col sm:flex-col lg:flex-row  justify-between '>
+      <div className='sm:w-full md:w-full xl:w-96 lg:w-60 flex flex-col gap-y-5 p-10 '>
         <h1 onClick={showCategoriesHandle} className='font-poppins font-bold text-gray-600 text-2xl xl:mb-8 lg:mb-8 flex items-center gap-1 '>FILTERS 
           <span className='xl:hidden lg:hidden '><GoChevronDown className={`${icon ? 'rotate-0' : 'rotate-180'} transition-all duration-300`} />
           </span>
@@ -52,7 +59,7 @@ const Collection = () => {
           <h1 className='font-poppins text-gray-800 text-xl'>CATEGORIES</h1>
           <div className='flex flex-col gap-2   '>
             <div className='flex gap-2'>
-               <input className='' onChange={filterCategory} type="checkbox" value={'Men'}  />
+               <input className=''onChange={filterCategory} type="checkbox" value={'Men'}  />
                <label className='font-poppins text-gray-500' htmlFor="">Men</label>
             </div>
             <div className='flex gap-2'>
@@ -67,18 +74,18 @@ const Collection = () => {
           
         </div>
         <div className={`border   border-gray-300 flex flex-col gap-5 p-5 xl:flex $ lg:flex sm:${showCategories} xm:${showCategories} md:${showCategories}`}>
-          <h1 className='font-poppins text-gray-800 text-xl'>CATEGORIES</h1>
+          <h1 className='font-poppins text-gray-800 text-xl'>TYPE</h1>
           <div className='flex flex-col gap-2'>
             <div className='flex gap-2'>
-               <input className='' onChange={filterSubCategory} type="checkbox" value={'Men'}  />
+               <input className='' onChange={filterSubCategory} type="checkbox" value={'Topwear'}  />
                <label className='font-poppins text-gray-500' htmlFor="">Topwear</label>
             </div>
             <div className='flex gap-2'>
-              <input  onChange={filterSubCategory} type="checkbox" value={'Women'} />
+              <input  onChange={filterSubCategory} type="checkbox" value={'Bottomwear'} />
               <label className='font-poppins text-gray-500' htmlFor="">Bottomwear</label>
             </div>
             <div className='flex gap-2'>
-              <input onChange={filterSubCategory} type="checkbox" value={'Kids'} />
+              <input onChange={filterSubCategory} type="checkbox" value={'Winterwear'} />
               <label className='font-poppins text-gray-500' htmlFor="">Winterwear</label>
             </div>
           </div>
@@ -86,21 +93,25 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className='flex xl:flex-col lg:flex-col md:flex-col  sm:flex-col xm:flex-col w-full p-8 '>
-          <div className='flex sm:flex-col xm:flex-col  gap-4 justify-between'>
+      <div className='flex flex-1 xl:flex-col lg:flex-col md:flex-col  sm:flex-col xm:flex-col w-full p-8 '>
+          <div className='flex xl:flex-row lg:flex-row sm:flex-col xm:flex-col  gap-4 justify-between'>
               <Title text1={'ALL'} text2={'COLLECTIONS'}/>
           <div className='border bg-gray-100 border-gray-300 max-w-60 h-max '>
               <select className='p-3 font-poppins ' name="" id="">
-                 <option className=' font-poppins ' value="apple">Sorted by: Relavent</option>
-                 <option value="apple">Apple</option>
-                 <option value="apple">Apple</option>
+                 <option className='font-poppins' value="">Sorted by: Relavent</option>
+                 <option className='font-poppins' value="">Sorted by: Low-High</option>
+                 <option className='font-poppins' value="">Sorted by: Hight-Low</option>
               </select>
           </div>
           </div>
-          <div className='mt-10'>
-            <ProductItems latestProducts={allProducts}/>
+          <div className='mt-10 grid lg:grid-cols-3 md:grid-cols-2  sm:grid-cols-2 xl:grid-cols-5 xm:grid-cols-1 gap-y-6 gap-4'>
+            {allProducts.map((item)=>{
+               return <ProductItems key={item._id} id={item._id}  name={item.name} image={item.image[0]} price={item.price} />
+            })}
           </div>
-          
+          {/* <div className='mt-10'>
+               <ProductItems latestProducts={allProducts}/>
+          </div> */}
       </div>
       
     </div>
