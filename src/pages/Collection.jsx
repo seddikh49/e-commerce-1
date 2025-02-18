@@ -8,35 +8,48 @@ import { GoChevronUp } from "react-icons/go";
 
 const Collection = () => {
   const {products} = useContext(ShopContext)
-  const [allProducts, setallProducts] = useState([])
+  const [category, setCategory] = useState([])
+  const [subCategory, setsubCategory] = useState([])
+  const [allProducts, setAllProducts] = useState([])
   const [showCategories, setshowCategories] = useState("hidden")
   const [icon, setIcon] = useState(true)
-  const ref = useRef()
+ 
 
-  useEffect(() => {
-    setallProducts(products)
-    console.log(allProducts)
-  }, [])
 
-  
   const filterCategory = (e) =>{
-    if(e.target.checked === true){
-      const filterCategory = products.filter((item)=>{
-        return item.category === e.target.value
-      })
-      setallProducts(filterCategory)
-    }
-    else{
-      setallProducts(products)
-    }
+      if(category.includes(e.target.value)){
+        setCategory(prev => prev.filter((cat)=> {return cat !== e.target.value}))    
+      }else{
+        setCategory(prev => [...prev , e.target.value])
+      }
   } 
 
   const filterSubCategory = (e) =>{
-    const filterSubCategory = products.filter((item)=>{
-      return item.subCategory === e.target.value
-    })
-    setallProducts(filterSubCategory)
-  } 
+    if(subCategory.includes(e.target.value)){
+      setsubCategory(prev => prev.filter((cat)=> {return cat !== e.target.value}))    
+    }else{
+      setsubCategory(prev => [...prev , e.target.value])
+    }
+} 
+
+  const applyFilter = () =>{
+    let copyFilter = [...products]
+    if(category.length){
+      copyFilter = copyFilter.filter((item) => {return category.includes(item.category)})
+    }
+    if(subCategory.length){
+      copyFilter = copyFilter.filter((item) => {return subCategory.includes(item.subCategory)})
+    }
+    setAllProducts(copyFilter)
+   
+  }
+  useEffect(() => {
+    applyFilter()
+    
+  }, [category,subCategory])
+  
+
+ 
 
   const showCategoriesHandle = () =>{
         if(showCategories === 'hidden'){
@@ -109,9 +122,6 @@ const Collection = () => {
                return <ProductItems key={item._id} id={item._id}  name={item.name} image={item.image[0]} price={item.price} />
             })}
           </div>
-          {/* <div className='mt-10'>
-               <ProductItems latestProducts={allProducts}/>
-          </div> */}
       </div>
       
     </div>
