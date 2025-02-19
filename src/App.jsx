@@ -11,11 +11,13 @@ import Order from '../src/pages/Orders'
 import About from '../src/pages/About'
 import Navbar from './componets/Navbar'
 import Footer from './componets/Footer'
+import SearchBar from './componets/SearchBar'
 
 const App = () => {
   return (
     <div className='px-4 lg:px-[9vh] md:px-[6vh] sm:px-[2vh]'>
       <Navbar/>
+      <SearchBar/>
       <Routes> 
       <Route path='/' element={<Home/>} /> 
       <Route path='/about' element={<About/>} />  
