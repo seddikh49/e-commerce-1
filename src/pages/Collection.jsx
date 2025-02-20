@@ -7,16 +7,14 @@ import { GoChevronUp } from "react-icons/go";
 
 
 const Collection = () => {
-  const { products } = useContext(ShopContext)
+
+  const { products,search } = useContext(ShopContext)
   const [category, setCategory] = useState([])
   const [subCategory, setsubCategory] = useState([])
   const [allProducts, setAllProducts] = useState([])
   const [showCategories, setshowCategories] = useState("hidden")
   const [icon, setIcon] = useState(true)
   const [sortedBy, setsortedBy] = useState();
-
-
-
 
 
   const filterCategory = (e) => {
@@ -49,6 +47,10 @@ const Collection = () => {
     if (subCategory.length) {
       copiedProducts = copiedProducts.filter((cop) => subCategory.includes(cop.subCategory))
     }
+    if(search){
+      copiedProducts = copiedProducts.filter((ser)=>  ser.name.toLowerCase().includes(search.toLowerCase()))
+    }
+   
     setAllProducts(copiedProducts)
   }
 
@@ -56,7 +58,7 @@ const Collection = () => {
   useEffect(() => {
     applyFilter()
     sorterdProducts()
-  }, [category, subCategory, sortedBy]);
+  }, [category, subCategory, sortedBy,search]);
 
 
 
@@ -100,7 +102,7 @@ const Collection = () => {
           <span className='xl:hidden lg:hidden '><GoChevronDown className={`${icon ? 'rotate-0' : 'rotate-180'} transition-all duration-300`} />
           </span>
         </h1>
-        <div className={`border w-full  border-gray-300 flex flex-col gap-5 p-5 xl:flex $ lg:flex sm:${showCategories} xm:${showCategories} md:${showCategories}`}>
+        <div className={`border w-full  border-gray-300 flex flex-col gap-5 p-5 xl:flex $ lg:flex ${showCategories}  xm:${showCategories} md:${showCategories}`}>
           <h1 className='font-poppins text-gray-800 text-xl'>CATEGORIES</h1>
           <div className='flex flex-col gap-2   '>
             <div className='flex gap-2'>
@@ -118,7 +120,7 @@ const Collection = () => {
           </div>
 
         </div>
-        <div className={`border   border-gray-300 flex flex-col gap-5 p-5 xl:flex $ lg:flex sm:${showCategories} xm:${showCategories} md:${showCategories}`}>
+        <div className={`border   border-gray-300 flex flex-col gap-5 p-5 xl:flex $ lg:flex ${showCategories} xm:${showCategories} md:${showCategories}`}>
           <h1 className='font-poppins text-gray-800 text-xl'>TYPE</h1>
           <div className='flex flex-col gap-2'>
             <div className='flex gap-2'>

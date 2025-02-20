@@ -1,12 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../‏‏assets/frontend_assets/assets";
-import { useState } from "react";
+import { useLocation } from 'react-router-dom';
+
 import { GoChevronLeft } from "react-icons/go";
 import { ShopContext } from "../context/shopContext";
 
 const Navbar = () => {
-  const { setShowSearch,showSearch } = useContext(ShopContext)
+
+
+
+
+ const location = useLocation();
+  const path = location.pathname.split('/')
+
+  useEffect(() => {
+    if (path.includes('collection')) {
+      setShowSearch(true)
+    }else{
+      setShowSearch(false)
+    }
+  }, [location]);
+
+
+  const { setShowSearch,showSearch ,setSearchBar} = useContext(ShopContext)
   const [visible, setVisible] = useState(false);
   return (
     <div className="flex h-[70px] justify-between mb-10 ">
@@ -56,8 +73,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex items-center gap-2">
-        <img onClick={()=> setShowSearch(true)} className="w-5" src={assets.search_icon} alt="" />
-
+          <img onClick={()=> setSearchBar(true)} className={`w-5 ${showSearch ?'opacity-100 ' : 'opacity-0 pointer-events-none'}`} src={assets.search_icon} alt="" />
         <div className="group relative">
           <img className="w-5 min-w-5 ml-2 " src={assets.profile_icon} alt="" />
           <div
