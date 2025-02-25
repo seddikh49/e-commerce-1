@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
-import { ShopContext } from '../context/shopContext'
 import ProductItems from '../componets/ProductItems';
 import Title from '../componets/Title';
 import { GoChevronDown } from "react-icons/go";
 import { GoChevronUp } from "react-icons/go";
+import { ShopContext } from '../context/ShopContext';
 
 
 const Collection = () => {
@@ -61,11 +61,9 @@ const Collection = () => {
   }, [category, subCategory, sortedBy,search]);
 
 
-
   const sorted = (e) => {
     setsortedBy(e.target.value)
   }
-
 
 
   const showCategoriesHandle = () => {

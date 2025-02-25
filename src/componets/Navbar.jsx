@@ -4,7 +4,7 @@ import { assets } from "../‏‏assets/frontend_assets/assets";
 import { useLocation } from 'react-router-dom';
 
 import { GoChevronLeft } from "react-icons/go";
-import { ShopContext } from "../context/shopContext";
+import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
 
@@ -23,7 +23,7 @@ const Navbar = () => {
   }, [location]);
 
 
-  const { setShowSearch,showSearch ,setSearchBar} = useContext(ShopContext)
+  const { setShowSearch,showSearch ,setSearchBar,countOfCarts} = useContext(ShopContext)
   const [visible, setVisible] = useState(false);
   return (
     <div className="flex h-[70px] justify-between mb-10 ">
@@ -89,7 +89,7 @@ const Navbar = () => {
         <Link to={"/card"} className="relative">
           <img className="w-5 min-w-5 ml-2" src={assets.cart_icon} alt="" />
           <div className="bg-black text-amber-50 rounded-full font-bold absolute aspect-square right-[-40%] bottom-[-40%] text-[10px] w-5 text-center flex justify-center items-center ">
-            10
+            {countOfCarts()}
           </div>
         </Link>
         <img
@@ -135,7 +135,7 @@ const Navbar = () => {
                 onClick={() => setVisible(false)}
                 to={"/about"}
                 className={
-                  "flex text-2xl relative py-2 px-4 border border-gray-300 flex-col  gap-1 font-poppins font-medium text-gray-800"
+                  "flex text-2xl relative py-2 px-4 border border-gray-300 flex-col  gap-1 font-poppins font-medium text-gray-600"
                 }
               >
                 <p>ABOUT</p>
@@ -144,7 +144,7 @@ const Navbar = () => {
                 onClick={() => setVisible(false)}
                 to={"/contact"}
                 className={
-                  "flex relative text-2xl border px-4 border-gray-300 py-2 flex-col  gap-1 font-poppins font-medium text-gray-800"
+                  "flex relative text-2xl border px-4 border-gray-300 py-2 flex-col  gap-1 font-poppins font-medium text-gray-600"
                 }
               >
                 <p>CONTACT</p>
