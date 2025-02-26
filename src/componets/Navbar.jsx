@@ -26,7 +26,7 @@ const Navbar = () => {
   const { setShowSearch,showSearch ,setSearchBar,countOfCarts} = useContext(ShopContext)
   const [visible, setVisible] = useState(false);
   return (
-    <div className="flex h-[70px] justify-between mb-10 ">
+    <div className="flex h-[70px] justify-between mb-10  ">
       <Link to={"/"}>
         <h1 className="text-4xl font-extrabold font-poppins text-gray-600 ">
           SEDEVER<span className="text-orange-400 text-6xl aspect-square">.</span>
@@ -75,7 +75,7 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
           <img onClick={()=> setSearchBar(true)} className={`w-5 ${showSearch ?'opacity-100 ' : 'opacity-0 pointer-events-none'}`} src={assets.search_icon} alt="" />
         <div className="group relative">
-          <img className="w-5 min-w-5 ml-2 " src={assets.profile_icon} alt="" />
+         <Link to={'/login'} > <img className="w-5 min-w-5 ml-2 " src={assets.profile_icon} alt="" /></Link>
           <div
             className="group-hover:block hidden font-poppins
            font-bold absolute py-2 px-5 right-0 dropdown-menu
