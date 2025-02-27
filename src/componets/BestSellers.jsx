@@ -19,7 +19,7 @@ const BestSellers = () => {
   return (
     <div>
         <div className='text-center text-3xl '>
-            <Title text1={'BEST'} text2={'SELLERS'}/>
+            <div className='mt-20'><Title text1={'BEST'} text2={'SELLERS'}/></div>
             <p className='text-gray-400 font-poppins text-lg text-center'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae deleniti, lorem inpoks istam clotes.
            </p>

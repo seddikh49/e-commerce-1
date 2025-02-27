@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className='w-full '>
        <Hero/>
-       <LatestCollection/>
+       <LatestCollection/> 
        <BestSellers/>
        <Policy/>
        <NewsLetter/>
