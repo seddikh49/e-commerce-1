@@ -35,12 +35,12 @@ const Card = () => {
 
   const Carts = () => {
     return (
-      <div className='mt-20'>{cartsData.map((cart, index) => {
+      <div className='mt-5'>{cartsData.map((cart, index) => {
         let filterCarts = products.filter((product) => cart._id === product._id)
            return filterCarts.map((item)=> {
             return (
-              <div key={index}>
-                    <div  className='flex sm:flex-col xm:flex-col md:flex-row xl:flex-row sm:items-start xl:items-center justify-between gap-5 border-b border-t-1 border-gray-200 p-10'>
+              <div className='' key={index}>
+                    <div  className='flex  sm:flex-col xm:flex-col  md:flex-row xl:flex-row sm:items-start  xl:items-center justify-between gap-5 border-b border-t-1 border-gray-200 p-4'>
                      <div className='flex gap-5 '>
                      <img src={item.image[0]} className='w-32' alt="" />
                       <div className='flex flex-col gap-3'>
@@ -66,7 +66,7 @@ const Card = () => {
 
   return (
 
-    <div className='border-t-1 border-gray-200 p-20'>
+    <div className='border-t-1 border-gray-200 p-5'>
       <Title text1={'YOUR'} text2={'CART'} />
       {cartsData.length ? (
         <Carts />
@@ -77,7 +77,7 @@ const Card = () => {
       <CartTotal/>
       </div>
       <div className='mt-10'>
-        <button onClick={()=> navigate('/place-order')} className='bg-black py-3 font-[400] font-poppins text-xl text-amber-50 px-6'>PROCEED TO CHECKOUT</button>       
+        <button onClick={()=> navigate('/place-order')} className='bg-black py-3 font-[400] font-poppins text-xl text-amber-50 px-6 xm:text-[14px]'>PROCEED TO CHECKOUT</button>       
       </div>
     </div>
   )
